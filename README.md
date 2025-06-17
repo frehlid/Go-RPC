@@ -1,3 +1,26 @@
+## Run Instructions
+There's a small message client built on top of the RPC service. To run it:
+
+1. Start the db daemon:
+   `go run cmd/dbd/dbd.go &`
+   - It will start listening on an address/port and print out that address.
+2. Start the message daemon:
+   `go run cmd/messaged/messaged.go addr:port &`
+   - where `addr:port` is the address/port the db daemon is listening on.
+3. Start the auth daemon:
+   `go run cmd/authd/authd.go addr:port &`
+4. Finally, connect as many chat clients as you would like.
+   `go run cmd/chat/chat.go 127.0.0.1:46756 s/l user pass`
+   -  `s` will sign a new user up, `l` will allow you to login to an existing user account.
+   - To send a message, use:
+        - `s <user> <message>`
+   - To read your inbox, use:
+        -  `read`
+   -  To allow another user to send you messages, use:
+        - `allow <user>`
+   - To block another user, use:
+        - `block <user>`
+
 Clearly and concisely addresses the following points.
 1. Evaluate your *rpc* solution from the perspective of transparency.
    - **Access**: 
